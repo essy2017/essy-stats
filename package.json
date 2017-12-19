@@ -1,6 +1,6 @@
 {
   "name": "essy-stats",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Statistical functions.",
   "main": "dist/bundle.js",
   "scripts": {
