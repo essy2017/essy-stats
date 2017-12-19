@@ -10,6 +10,9 @@ const SQTPI  =  2.50662827463100050242E0;
 const SQRTH  =  7.07106781186547524401E-1;
 const LOGPI  =  1.14472988584940017414;
 
+const big    = 4.503599627370496e15;
+const biginv =  2.22044604925031308085e-16;
+
 /**
  * Returns beta function.
  * @source cern.jet.stat.Gamma 

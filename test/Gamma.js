@@ -10,17 +10,15 @@ describe('Gamma', () => {
   
   describe('beta()', () => {
     it('Should return a value', () => {
-      var b = Gamma.beta(1, 3);
-      assert.ok(true);
+      var b = Gamma.beta(1.5, 0.2);
+      assert.strictEqual(Number(b.toFixed(4)), 4.4776);
     });
   });
   
   describe('gamma()', () => {
     it('Should return a value', () => {
-      var g = Gamma.gamma(4);
-      assert.strictEqual(g, 6);
-      g = Gamma.gamma(10.43);
-      assert.ok(true);
+      var g = Gamma.gamma(2.5);
+      assert.strictEqual(Number(g.toFixed(4)), 1.3293);
     });
   });
   
