@@ -1,0 +1,16 @@
+{
+  "name": "essy-stats",
+  "version": "1.0.0",
+  "description": "Statistical functions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "Statistics",
+    "Gamma",
+    "Beta"
+  ],
+  "author": "Spencer Cherry",
+  "license": "ISC"
+}
