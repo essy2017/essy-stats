@@ -2,15 +2,33 @@
   "name": "essy-stats",
   "version": "1.0.0",
   "description": "Statistical functions.",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha",
+    "build": "webpack --config webpack.config.js --progress",
+    "webpack:watch": "webpack --config webpack.config.js --progress --watch"
   },
   "keywords": [
-    "Statistics",
-    "Gamma",
-    "Beta"
+    "statistics",
+    "gamma",
+    "beta"
   ],
   "author": "Spencer Cherry",
-  "license": "ISC"
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "mocha": "^4.0.1",
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/essy2017/essy-stats.git"
+  },
+  "homepage": "https://github.com/essy2017/essy-stats.git#readme"
 }
