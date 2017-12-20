@@ -21,23 +21,23 @@ describe('Gamma', () => {
     });
   });
   
-  describe('incompleteBeta()', () => {
+  describe('incBeta()', () => {
     it('Should return a value', () => {
-      var b = stats.incompleteBeta(1, 3, 0.4);
+      var b = stats.incBeta(1, 3, 0.4);
       assert.strictEqual(Number(b.toFixed(4)), 0.2613);
     });
   });
   
-  describe('invIncompleteBeta()', () => {
+  describe('invIncBeta()', () => {
     it('Should return a value', () => {
-      var b = stats.invIncompleteBeta(0.3, 1, 3);
+      var b = stats.invIncBeta(0.3, 1, 3);
       assert.strictEqual(Number(b.toFixed(4)), 0.5358);
     });
   });
   
-  describe('regIncompleteBeta()', () => {
+  describe('regIncBeta()', () => {
     it('Should return a value', () => {
-      var b = stats.regIncompleteBeta(1, 3, 0.4);
+      var b = stats.regIncBeta(1, 3, 0.4);
       assert.strictEqual(b, 0.784);
     });
   });

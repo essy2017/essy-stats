@@ -129,24 +129,24 @@ function gamma (x) {
 
 /**
  * Incomplete beta function.
- * @method incompleteBeta 
+ * @method incBeta 
  * @param a {Number} Alpha.
  * @param b {Number} Beta.
  * @param x {Number} End point.
  */
-function incompleteBeta (a, b, x) {
-  return beta(a, b) * regIncompleteBeta(a, b, x);
+function incBeta (a, b, x) {
+  return beta(a, b) * regIncBeta(a, b, x);
 }
 
 
 /**
  * Inverse incomplete beta function.
- * @method invIncompleteBeta
+ * @method invIncBeta
  * @param p {Number} Probability.
  * @param alpha {Number}
  * @param beta {Number}
  */
-function invIncompleteBeta (p, alpha, beta) {
+function invIncBeta (p, alpha, beta) {
   
   let x = 0;
   let a = 0;
@@ -155,7 +155,7 @@ function invIncompleteBeta (p, alpha, beta) {
   
   while (b - a > precision) {
     x = (a + b) / 2;
-    if (incompleteBeta(alpha, beta, x) > p) {
+    if (incBeta(alpha, beta, x) > p) {
       b = x;
     }
     else {
@@ -168,12 +168,12 @@ function invIncompleteBeta (p, alpha, beta) {
 
 /**
  * Regularized inverse incomplete beta function.
- * @method regInvIncompleteBeta
+ * @method regInvIncBeta
  * @param p {Number} Probability.
  * @param alpha {Number}
  * @param beta {Number}
  */
-function regInvIncompleteBeta (p, alpha, beta) {
+function regInvIncBeta (p, alpha, beta) {
   
   let x = 0;
   let a = 0;
@@ -182,7 +182,7 @@ function regInvIncompleteBeta (p, alpha, beta) {
   
   while (b - a > precision) {
     x = (a + b) / 2;
-    if (regIncompleteBeta(alpha, beta, x) > p) {
+    if (regIncBeta(alpha, beta, x) > p) {
       b = x;
     }
     else {
@@ -194,13 +194,14 @@ function regInvIncompleteBeta (p, alpha, beta) {
 }
 
 /**
- * Returns the Incomplete Beta Function evaluated from zero to <tt>xx</tt>; formerly named <tt>ibeta</tt>.
- *
+ * Returns the Incomplete Beta Function evaluated from zero to xx.
+ * @source cern.jet.stat.Gamma
+ * @method regIncBeta
  * @param aa the alpha parameter of the beta distribution.
  * @param bb the beta parameter of the beta distribution.
  * @param xx the integration end point.
  */
-function regIncompleteBeta (aa, bb, xx) {
+function regIncBeta (aa, bb, xx) {
 		
   let a, b, t, x, xc, w, y, flag;
 
@@ -603,13 +604,13 @@ function stirlingFormula (x) {
 
 
 export default {
-  beta                 : beta,
-  gamma                : gamma,
-  incompleteBeta       : incompleteBeta,
-  invIncompleteBeta    : invIncompleteBeta,
-  logGamma             : logGamma,
-  powerSeries          : powerSeries,
-  regIncompleteBeta    : regIncompleteBeta,
-  regInvIncompleteBeta : regInvIncompleteBeta,
-  stirlingFormula      : stirlingFormula
+  beta            : beta,
+  gamma           : gamma,
+  incBeta         : incBeta,
+  invIncBeta      : invIncBeta,
+  logGamma        : logGamma,
+  powerSeries     : powerSeries,
+  regIncBeta      : regIncBeta,
+  regInvIncBeta   : regInvIncBeta,
+  stirlingFormula : stirlingFormula
 }
