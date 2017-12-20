@@ -138,6 +138,13 @@ function incompleteBeta (a, b, x) {
   return beta(a, b) * regIncompleteBeta(a, b, x);
 }
 
+/**
+ * Inverse incomplete beta function.
+ * @method invIncompleteBeta
+ * @param p {Number} Probability.
+ * @param alpha {Number}
+ * @param beta {Number}
+ */
 function invIncompleteBeta (p, alpha, beta) {
   
   let x = 0;
@@ -147,7 +154,7 @@ function invIncompleteBeta (p, alpha, beta) {
   
   while (b - a > precision) {
     x = (a + b) / 2;
-    if (incompleteBeta(alpha, beta, x) > p) {
+    if (regIncompleteBeta(alpha, beta, x) > p) {
       b = x;
     }
     else {
