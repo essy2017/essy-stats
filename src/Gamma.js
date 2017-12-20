@@ -138,6 +138,7 @@ function incompleteBeta (a, b, x) {
   return beta(a, b) * regIncompleteBeta(a, b, x);
 }
 
+
 /**
  * Inverse incomplete beta function.
  * @method invIncompleteBeta
@@ -146,6 +147,33 @@ function incompleteBeta (a, b, x) {
  * @param beta {Number}
  */
 function invIncompleteBeta (p, alpha, beta) {
+  
+  let x = 0;
+  let a = 0;
+  let b = 1;
+  const precision = Math.pow(10, -6);
+  
+  while (b - a > precision) {
+    x = (a + b) / 2;
+    if (incompleteBeta(alpha, beta, x) > p) {
+      b = x;
+    }
+    else {
+      a = x;
+    }
+  }
+  
+  return x;
+}
+
+/**
+ * Regularized inverse incomplete beta function.
+ * @method regInvIncompleteBeta
+ * @param p {Number} Probability.
+ * @param alpha {Number}
+ * @param beta {Number}
+ */
+function regInvIncompleteBeta (p, alpha, beta) {
   
   let x = 0;
   let a = 0;
@@ -575,12 +603,13 @@ function stirlingFormula (x) {
 
 
 export default {
-  beta              : beta,
-  gamma             : gamma,
-  incompleteBeta    : incompleteBeta,
-  invIncompleteBeta : invIncompleteBeta,
-  logGamma          : logGamma,
-  powerSeries       : powerSeries,
-  regIncompleteBeta : regIncompleteBeta,
-  stirlingFormula   : stirlingFormula
+  beta                 : beta,
+  gamma                : gamma,
+  incompleteBeta       : incompleteBeta,
+  invIncompleteBeta    : invIncompleteBeta,
+  logGamma             : logGamma,
+  powerSeries          : powerSeries,
+  regIncompleteBeta    : regIncompleteBeta,
+  regInvIncompleteBeta : regInvIncompleteBeta,
+  stirlingFormula      : stirlingFormula
 }
