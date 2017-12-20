@@ -1,2 +1,2 @@
-export * as Gamma from './src/Gamma';
-export * as Polynomial from './src/Polynomial';
+export * from './src/Gamma';
+export * from './src/Polynomial';
