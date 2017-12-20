@@ -29,6 +29,13 @@ describe('Gamma', () => {
     });
   });
   
+  describe('invIncompleteBeta()', () => {
+    it('Should return a value', () => {
+      var b = Gamma.invIncompleteBeta(0.3, 1, 3);
+      assert.strictEqual(Number(b.toFixed(4)), 0.5358);
+    });
+  });
+  
   describe('regIncompleteBeta()', () => {
     it('Should return a value', () => {
       var b = Gamma.regIncompleteBeta(1, 3, 0.4);

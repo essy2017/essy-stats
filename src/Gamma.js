@@ -138,6 +138,26 @@ function incompleteBeta (a, b, x) {
   return beta(a, b) * regIncompleteBeta(a, b, x);
 }
 
+function invIncompleteBeta (p, alpha, beta) {
+  
+  let x = 0;
+  let a = 0;
+  let b = 1;
+  const precision = Math.pow(10, -6);
+  
+  while (b - a > precision) {
+    x = (a + b) / 2;
+    if (incompleteBeta(alpha, beta, x) > p) {
+      b = x;
+    }
+    else {
+      a = x;
+    }
+  }
+  
+  return x;
+}
+
 /**
  * Returns the Incomplete Beta Function evaluated from zero to <tt>xx</tt>; formerly named <tt>ibeta</tt>.
  *
@@ -551,6 +571,7 @@ export default {
   beta              : beta,
   gamma             : gamma,
   incompleteBeta    : incompleteBeta,
+  invIncompleteBeta : invIncompleteBeta,
   logGamma          : logGamma,
   powerSeries       : powerSeries,
   regIncompleteBeta : regIncompleteBeta,
