@@ -15,15 +15,15 @@ const biginv =  2.22044604925031308085e-16;
 
 /**
  * Returns beta function.
- * @source cern.jet.stat.Gamma 
- * @method beta 
+ * @source cern.jet.stat.Gamma
+ * @method beta
  * @param a {Number} Alpha parameter.
  * @param b {Number} Beta parameter.
  */
 function beta (a, b) {
-	
+
   let y;
-	
+
 	y = a + b;
 	y = gamma(y);
 	if( y == 0.0 ) return 1.0;
@@ -44,7 +44,7 @@ function beta (a, b) {
  * Returns the error function of the normal distribution; formerly named <tt>erf</tt>.
  * The integral is
  * <pre>
- *                           x 
+ *                           x
  *                            -
  *                 2         | |          2
  *   erf(x)  =  --------     |    exp( - t  ) dt.
@@ -61,7 +61,7 @@ function beta (a, b) {
  *
  * @param a the argument to the function.
  */
-function erf (x) { 
+function erf (x) {
 	let y, z;
 	const T = [
     9.60497373987051638749E0,
@@ -90,7 +90,7 @@ function erf (x) {
  * <pre>
  *  1 - erf(x) =
  *
- *                           inf. 
+ *                           inf.
  *                             -
  *                  2         | |          2
  *   erfc(x)  =  --------     |    exp( - t  ) dt
@@ -107,8 +107,8 @@ function erf (x) {
  *
  * @param a the argument to the function.
  */
-function erfComplemented (a) { 
-	
+function erfComplemented (a) {
+
   let x,y,z,p,q;
 
 	const P = [
@@ -143,7 +143,7 @@ function erfComplemented (a) {
 					  2.97886665372100240670E0
           ];
 	const S = [
-					//1.00000000000000000000E0, 
+					//1.00000000000000000000E0,
 					  2.26052863220117276590E0,
 					  9.39603524938001434673E0,
 					  1.20489539808096656605E1,
@@ -188,8 +188,8 @@ function erfComplemented (a) {
 
 /**
  * Returns the Gamma function of the argument.
- * @source cern.jet.stat.Gamma 
- * @method gamma 
+ * @source cern.jet.stat.Gamma
+ * @method gamma
  */
 function gamma (x) {
 
@@ -268,14 +268,14 @@ function gamma (x) {
 	x -= 2.0;
 	p = Polynomial.polevl( x, P, 6 );
 	q = Polynomial.polevl( x, Q, 7 );
-	
+
   return  z * p / q;
 
 }
 
 /**
  * Incomplete beta function.
- * @method incBeta 
+ * @method incBeta
  * @param a {Number} Alpha.
  * @param b {Number} Beta.
  * @param x {Number} End point.
@@ -293,12 +293,12 @@ function incBeta (a, b, x) {
  * @param beta {Number}
  */
 function invIncBeta (p, alpha, beta) {
-  
+
   let x = 0;
   let a = 0;
   let b = 1;
   const precision = Math.pow(10, -6);
-  
+
   while (b - a > precision) {
     x = (a + b) / 2;
     if (incBeta(alpha, beta, x) > p) {
@@ -308,7 +308,7 @@ function invIncBeta (p, alpha, beta) {
       a = x;
     }
   }
-  
+
   return x;
 }
 
@@ -320,12 +320,12 @@ function invIncBeta (p, alpha, beta) {
  * @param beta {Number}
  */
 function regInvIncBeta (p, alpha, beta) {
-  
+
   let x = 0;
   let a = 0;
   let b = 1;
   const precision = Math.pow(10, -6);
-  
+
   while (b - a > precision) {
     x = (a + b) / 2;
     if (regIncBeta(alpha, beta, x) > p) {
@@ -335,7 +335,7 @@ function regInvIncBeta (p, alpha, beta) {
       a = x;
     }
   }
-  
+
   return x;
 }
 
@@ -348,7 +348,7 @@ function regInvIncBeta (p, alpha, beta) {
  * @param xx the integration end point.
  */
 function regIncBeta (aa, bb, xx) {
-		
+
   let a, b, t, x, xc, w, y, flag;
 
 	if( aa <= 0.0 || bb <= 0.0 ) throw new Error("ibeta: Domain error!");
@@ -413,7 +413,7 @@ function regIncBeta (aa, bb, xx) {
 	  }
 		return t;
 	}
-	
+
   /* Resort to logarithms.  */
 	y += t + logGamma(a+b) - logGamma(a) - logGamma(b);
 	y += Math.log(w/a);
@@ -426,9 +426,9 @@ function regIncBeta (aa, bb, xx) {
  	  if( t <= MACHEP ) 	t = 1.0 - MACHEP;
 	  else    		        t = 1.0 - t;
 	}
-	
+
   return t;
-}  
+}
 
 /**
  * @source cern.jet.stat.Gamma
@@ -436,7 +436,7 @@ function regIncBeta (aa, bb, xx) {
  * @method incompleteBetaFraction1
  */
 function incompleteBetaFraction1 (a, b, x) {
-  
+
   let xk, pk, pkm1, pkm2, qk, qkm1, qkm2;
 	let k1, k2, k3, k4, k5, k6, k7, k8;
 	let r, t, ans, thresh;
@@ -509,15 +509,15 @@ function incompleteBetaFraction1 (a, b, x) {
 	} while( ++n < 300 );
 
 	return ans;
-}   
+}
 
 /**
- * @source cern.jet.stat.Gamma 
+ * @source cern.jet.stat.Gamma
  * Continued fraction expansion #2 for incomplete beta integral; formerly named <tt>incbd</tt>.
  * @method incompleteBetaFraction2
  */
 function incompleteBetaFraction2 (a, b, x) {
-	
+
   let xk, pk, pkm1, pkm2, qk, qkm1, qkm2;
 	let k1, k2, k3, k4, k5, k6, k7, k8;
 	let r, t, ans, z, thresh;
@@ -663,7 +663,7 @@ function logGamma (x) {
 	if( x > 2.556348e305 ) throw new Error("lgamma: Overflow");
 
 	q = ( x - 0.5 ) * Math.log(x) - x + 0.91893853320467274178;
-	
+
 	if( x > 1.0e8 ) return( q );
 
 	p = 1.0/(x*x);
@@ -673,14 +673,111 @@ function logGamma (x) {
 		        + 0.0833333333333333333333) / x;
 	else
 	  q += Polynomial.polevl( p, A, 4 ) / x;
-	
+
   return q;
+}
+
+
+/**
+ * Returns the Incomplete Gamma function; formerly named <tt>igamma</tt>.
+ * @source cern.jet.stat.Gamma
+ * @method lowerIncGamma
+ * @param a the parameter of the gamma distribution.
+ * @param x the integration end point.
+ */
+function lowerIncGamma (a, x) {
+
+  let ans, ax, c, r;
+
+	if( x <= 0 || a <= 0 ) return 0.0;
+
+	if( x > 1.0 && x > a ) return 1.0 - upperIncGamma(a,x);
+
+	/* Compute  x**a * exp(-x) / gamma(a)  */
+	ax = a * Math.log(x) - x - logGamma(a);
+	if( ax < -MAXLOG ) return( 0.0 );
+
+	ax = Math.exp(ax);
+
+	/* power series */
+	r = a;
+	c = 1.0;
+	ans = 1.0;
+
+	do {
+    r += 1.0;
+	  c *= x/r;
+	  ans += c;
+	} while ( c/ans > MACHEP );
+
+	return( ans * ax/a );
+
+}
+
+/**
+ * Returns the Complemented Incomplete Gamma function; formerly named <tt>igamc</tt>.
+ * @source cern.jet.stat.Gamma
+ * @method upperIncGamma
+ * @param a the parameter of the gamma distribution.
+ * @param x the integration start point.
+ */
+function upperIncGamma (a, x) {
+
+	let ans, ax, c, yc, r, t, y, z;
+	let pk, pkm1, pkm2, qk, qkm1, qkm2;
+
+	if( x <= 0 || a <= 0 ) return 1.0;
+
+	if( x < 1.0 || x < a ) return 1.0 - lowerIncGamma(a,x);
+
+	ax = a * Math.log(x) - x - logGamma(a);
+	if( ax < -MAXLOG ) return 0.0;
+
+	ax = Math.exp(ax);
+
+	/* continued fraction */
+	y = 1.0 - a;
+	z = x + y + 1.0;
+	c = 0.0;
+	pkm2 = 1.0;
+	qkm2 = x;
+	pkm1 = x + 1.0;
+	qkm1 = z * x;
+	ans = pkm1/qkm1;
+
+	do {
+    c += 1.0;
+	  y += 1.0;
+	  z += 2.0;
+	  yc = y * c;
+	  pk = pkm1 * z  -  pkm2 * yc;
+	  qk = qkm1 * z  -  qkm2 * yc;
+	  if( qk != 0 ) {
+		  r = pk/qk;
+		  t = Math.abs( (ans - r)/r );
+		  ans = r;
+	  } else
+		  t = 1.0;
+
+	  pkm2 = pkm1;
+	  pkm1 = pk;
+	  qkm2 = qkm1;
+	  qkm1 = qk;
+	  if( Math.abs(pk) > big ) {
+		  pkm2 *= biginv;
+		  pkm1 *= biginv;
+		  qkm2 *= biginv;
+		  qkm1 *= biginv;
+	  }
+	} while( t > MACHEP );
+
+	return ans * ax;
 }
 
 /**
  * @source cern.jet.stat.Gamma
  * Power series for incomplete beta integral; formerly named <tt>pseries</tt>.
- * Use when b*x is small and x not too close to 1.  
+ * Use when b*x is small and x not too close to 1.
  * @method powerSeries
  */
 function powerSeries (a, b, x) {
@@ -698,7 +795,7 @@ function powerSeries (a, b, x) {
 	  u = (n - b) * x / n;
 	  t *= u;
 	  v = t / (a + n);
-	  s += v; 
+	  s += v;
 	  n += 1.0;
 	}
 	s += t1;
@@ -756,8 +853,10 @@ export default {
   incBeta         : incBeta,
   invIncBeta      : invIncBeta,
   logGamma        : logGamma,
+  lowerIncGamma   : lowerIncGamma,
   powerSeries     : powerSeries,
   regIncBeta      : regIncBeta,
   regInvIncBeta   : regInvIncBeta,
-  stirlingFormula : stirlingFormula
+  stirlingFormula : stirlingFormula,
+  upperIncGamma   : upperIncGamma
 }
